@@ -16,3 +16,5 @@
 - Установите Graphviz
 - Windows:
 Скачайте и установите с: https://graphviz.org/download/
+- Linux
+- ```sudo apt install graphviz```
