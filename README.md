@@ -15,9 +15,8 @@
 # Установка
 - Установите Graphviz
 - Windows:
-Скачайте и установите с: https://graphviz.org/download/
+Скачайте и установите с [https://graphviz.org/download/](https://graphviz.org/download/)
 - Linux:  ```sudo apt install graphviz```
-  [https://graphviz.org/download/](https://graphviz.org/download/)
 - MacOS: ```brew install graphviz```
 - Установите необходимые библиотеки: ```pip install -r requirements.txt```
 
