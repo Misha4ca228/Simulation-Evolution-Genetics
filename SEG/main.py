@@ -4,13 +4,13 @@ import config as cfg
 from SEG.state import state
 from SEG.ui.game_info import render_game_info
 from SEG.utils.agent import render_agents, init_agent
-from SEG.utils.food import random_spawn_food, render_food
+from SEG.utils.food import random_spawn_food, render_food, add_food
 from SEG.utils.tree import build_tree
 
 pygame.init()
 
 screen = pygame.display.set_mode(cfg.window_size)
-pygame.display.set_caption("SEG v1.0")
+pygame.display.set_caption("SEG v1.0.1")
 
 clock = pygame.time.Clock()
 font = pygame.font.SysFont(None, 24)
@@ -34,9 +34,15 @@ while state.running:
         agent.move()
         agent.eat()
         agent.reproduce()
-        if agent.energy <= 0 or agent.age >= cfg.max_age:
+
+        if agent.energy <= 0:
             agent.death_tick = state.current_tick
             state.agents.remove(agent)
+
+        if agent.age >= cfg.max_age:
+            agent.death_tick = state.current_tick
+            state.agents.remove(agent)
+            add_food(x=agent.x, y=agent.y, energy=agent.energy, type="death")
 
     if state.food_timer >= 1.0:
         random_spawn_food(count=cfg.food_per_second)
