@@ -4,17 +4,19 @@ from SEG.state import state
 from SEG.ui.game_info import render_game_info
 from SEG.utils.agent import render_agents, init_agent, resolve_all_collisions
 from SEG.utils.food import random_spawn_food, render_food, add_food
+from SEG.utils.music import init_music
 from SEG.utils.tree import build_tree
 
 
 pygame.init()
 
 screen = pygame.display.set_mode(settings.window_size)
-pygame.display.set_caption("SEG v1.5")
+pygame.display.set_caption("SEG v1.6")
 
 clock = pygame.time.Clock()
 font = pygame.font.SysFont(None, 24)
 
+init_music()
 init_agent(count=settings.initial_agents)
 
 while state.running:

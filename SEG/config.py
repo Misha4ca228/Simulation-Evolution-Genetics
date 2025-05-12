@@ -19,6 +19,10 @@ class Settings:
         self.max_agents = 125
         # Цвета
         self.background_color = (48, 54, 64)  # Цвет фона
+        # Музыка
+        self.musics = [
+            "resources/musics/1.ogg"
+        ]
 
 
 settings = Settings()
