@@ -18,6 +18,8 @@ def random_spawn_food(count=10):
     if state.food_timer >= 1:
         state.food_timer = 0
         for i in range(count):
+            if not len(state.foods) <= cfg.max_food:
+                break
             add_food(x=random.randint(0, width), y=random.randint(0, height),
                      energy=random.randint(cfg.min_food_energy, cfg.max_food_energy),
                      type=random.choice(["plaint", "meat"]))

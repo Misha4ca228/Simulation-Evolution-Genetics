@@ -7,5 +7,6 @@ class SimulationState:
         self.running = True
         self.food_timer = 0
         self.current_tick = 0
+        self.avg_speed = 1
 
 state = SimulationState()
