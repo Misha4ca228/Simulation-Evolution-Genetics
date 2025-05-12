@@ -16,7 +16,7 @@ class Agent:
         self.y = y
         self.speed = speed
         self.color = color
-        self.energy = 70
+        self.energy = 100
         self.age = 0
         self.parent_id = parent_id
         self.birth_tick = birth_tick

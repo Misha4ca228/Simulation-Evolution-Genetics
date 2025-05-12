@@ -10,7 +10,7 @@ from SEG.utils.tree import build_tree
 pygame.init()
 
 screen = pygame.display.set_mode(settings.window_size)
-pygame.display.set_caption("SEG v1.4")
+pygame.display.set_caption("SEG v1.5")
 
 clock = pygame.time.Clock()
 font = pygame.font.SysFont(None, 24)
@@ -29,7 +29,7 @@ while state.running:
                 state.is_pause = not state.is_pause
 
     screen.fill(settings.background_color)
-    render_food(screen)
+    render_food(screen, font)
     render_agents(screen, font)
     render_game_info(screen, font)
     pygame.display.flip()
