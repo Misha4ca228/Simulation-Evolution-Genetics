@@ -10,7 +10,7 @@ from SEG.utils.tree import build_tree
 pygame.init()
 
 screen = pygame.display.set_mode(cfg.window_size)
-pygame.display.set_caption("SEG v1.1")
+pygame.display.set_caption("SEG v1.2")
 
 clock = pygame.time.Clock()
 font = pygame.font.SysFont(None, 24)
@@ -64,7 +64,6 @@ while state.running:
     state.current_tick += 1
     delta_t = 60 / 1000
     state.food_timer += delta_t
-
     clock.tick(50)
 
 pygame.quit()
