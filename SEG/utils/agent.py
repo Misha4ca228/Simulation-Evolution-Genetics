@@ -10,7 +10,6 @@ from SEG.utils.color import speed_to_color
 width, height = cfg.window_size
 
 
-
 def init_agent(count=1):
     for i in range(count):
         init_speed = random.uniform(1, 4)
@@ -22,4 +21,10 @@ def init_agent(count=1):
 
 def render_agents(screen):
     for agent in state.agents:
-        pygame.draw.circle(screen, agent.color, (agent.x, agent.y), 5)
+        pygame.draw.circle(screen, agent.color, (agent.x, agent.y), agent.radius)
+
+
+def resolve_all_collisions(agents):
+    for i in range(len(agents)):
+        for j in range(i + 1, len(agents)):
+            agents[i].resolve_collision(agents[j])

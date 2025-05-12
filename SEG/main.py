@@ -3,7 +3,7 @@ import random
 import config as cfg
 from SEG.state import state
 from SEG.ui.game_info import render_game_info
-from SEG.utils.agent import render_agents, init_agent
+from SEG.utils.agent import render_agents, init_agent, resolve_all_collisions
 from SEG.utils.food import random_spawn_food, render_food, add_food
 from SEG.utils.tree import build_tree
 
@@ -11,7 +11,7 @@ from SEG.utils.tree import build_tree
 pygame.init()
 
 screen = pygame.display.set_mode(cfg.window_size)
-pygame.display.set_caption("SEG v1.0.2")
+pygame.display.set_caption("SEG v1.1")
 
 clock = pygame.time.Clock()
 font = pygame.font.SysFont(None, 24)
@@ -52,6 +52,8 @@ while state.running:
     if state.food_timer >= 1.0:
         random_spawn_food(count=cfg.food_per_second)
         state.food_timer = 0
+
+    resolve_all_collisions(state.agents)
 
     screen.fill(cfg.background_color)
     render_food(screen)
