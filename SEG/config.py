@@ -1,6 +1,6 @@
 # Параметры
 initial_agents = 1 # Начальная популяция
-food_per_second = 3  # Появление еды еда\сек
+food_per_second = 5  # Появление еды еда\сек
 ticks_per_year = 100  # 1 игровой год
 window_size = (800, 800)
 
@@ -9,15 +9,15 @@ mut_ratio = 0.1
 
 # Энергия
 div_energy = 70
-step_energy = 0.1
-speed_energy = 0.2
+step_energy = 0.05
+speed_energy = 0.25
 
 # Ограничения
 max_age = 1000  # Максимальные возраст
 max_speed = 10.0  # Максимальная скорость
-min_food_energy = 30  # Минимальная энергия еды
-max_food_energy = 45  # Максимальная энергия еды
-max_food = 190
+min_food_energy = 40  # Минимальная энергия еды
+max_food_energy = 65  # Максимальная энергия еды
+max_food = 200
 
 # Цвета
 background_color = (48, 54, 64)

@@ -19,10 +19,6 @@ font = pygame.font.SysFont(None, 24)
 init_agent(count=cfg.initial_agents)
 
 while state.running:
-    clock.tick(50)
-    state.current_tick += 1
-    delta_t = 60 / 1000
-    state.food_timer += delta_t
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -30,6 +26,11 @@ while state.running:
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_g:
                 build_tree()
+            if event.key == pygame.K_SPACE:
+                state.is_pause = not state.is_pause
+
+    if state.is_pause:
+        continue
 
     speed_count = 0
     for agent in state.agents[:]:
@@ -61,5 +62,10 @@ while state.running:
     render_game_info(screen, font)
     pygame.display.flip()
 
+    state.current_tick += 1
+    delta_t = 60 / 1000
+    state.food_timer += delta_t
+
+    clock.tick(50)
 
 pygame.quit()
