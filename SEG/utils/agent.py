@@ -21,7 +21,7 @@ def init_agent(count=1):
 
 def render_agents(screen):
     for agent in state.agents:
-        pygame.draw.circle(screen, agent.color, (agent.x, agent.y), agent.radius)
+        pygame.draw.circle(screen, agent.color, (agent.x, agent.y), 5)
 
 
 def resolve_all_collisions(agents):

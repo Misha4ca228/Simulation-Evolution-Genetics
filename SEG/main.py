@@ -1,5 +1,4 @@
 import pygame
-import random
 import config as cfg
 from SEG.state import state
 from SEG.ui.game_info import render_game_info

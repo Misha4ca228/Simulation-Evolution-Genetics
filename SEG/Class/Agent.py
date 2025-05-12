@@ -17,7 +17,6 @@ class Agent:
         self.color = color
         self.energy = 70
         self.age = 0
-        self.radius = 5
         self.parent_id = parent_id
         self.birth_tick = birth_tick
         self.death_tick = None
@@ -46,7 +45,7 @@ class Agent:
             new_speed = max(0.5, min(cfg.max_speed, self.speed + random.uniform(-cfg.mut_ratio, cfg.mut_ratio)))
             new_color = speed_to_color(new_speed, cfg.max_speed)
             child = Agent(self.x, self.y, new_speed, new_color, parent_id=self.id,
-                          birth_tick=state.current_tick)
+                             birth_tick=state.current_tick)
             state.all_agents[child.id] = child
             state.agents.append(child)
 
@@ -54,14 +53,13 @@ class Agent:
         dx = other.x - self.x
         dy = other.y - self.y
         dist = math.hypot(dx, dy)
-        min_dist = self.radius * 2
+        min_dist = 5
 
         if dist < min_dist and dist != 0:
             overlap = min_dist - dist
             nx = dx / dist
             ny = dy / dist
 
-            # Раздвигаем обе клетки
             self.x -= nx * overlap / 2
             self.y -= ny * overlap / 2
             other.x += nx * overlap / 2
