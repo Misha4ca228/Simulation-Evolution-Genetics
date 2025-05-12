@@ -1,23 +1,23 @@
 # Параметры
 initial_agents = 1 # Начальная популяция
-food_per_second = 5  # Появление еды еда\сек
+food_per_second = 4  # Появление еды еда\сек
 ticks_per_year = 100  # 1 игровой год
-window_size = (800, 800)
+window_size = (800, 600)
 
 # Гены
 mut_ratio = 0.1
 
 # Энергия
-div_energy = 70
-step_energy = 0.05
-speed_energy = 0.25
+div_energy = 80
+step_energy = 0.9
+speed_energy = 0.11
 
 # Ограничения
 max_age = 1000  # Максимальные возраст
-max_speed = 10.0  # Максимальная скорость
+max_speed = 8.0  # Максимальная скорость
 min_food_energy = 40  # Минимальная энергия еды
 max_food_energy = 65  # Максимальная энергия еды
-max_food = 200
+max_food = 250
 
 # Цвета
 background_color = (48, 54, 64)
@@ -41,6 +41,7 @@ class Settings:
         self.min_food_energy = 30  # Минимальная энергия еды
         self.max_food_energy = 40  # Максимальная энергия еды
         self.max_food = 190  # Максимальное кол-во еды на поле
+        self.max_agents = 125
         # Цвета
         self.background_color = (48, 54, 64)  # Цвет фона
 
