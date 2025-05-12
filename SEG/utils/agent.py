@@ -1,11 +1,10 @@
 import random
 
 import pygame
-
-import SEG.config as cfg
 from SEG.Class.Agent import Agent
 from SEG.config import settings
 from SEG.state import state
+from SEG.ui.agent import draw_agent_info
 from SEG.utils.color import speed_to_color
 
 width, height = settings.window_size
@@ -20,12 +19,21 @@ def init_agent(count=1):
         state.all_agents[agent.id] = agent
 
 
-def render_agents(screen):
+def render_agents(screen, font):
+    mouse_pos = pygame.mouse.get_pos()
     for agent in state.agents:
         pygame.draw.circle(screen, agent.color, (agent.x, agent.y), 6)
+        if is_mouse_over_agent(agent, mouse_pos):
+            draw_agent_info(screen, agent, mouse_pos, font)
 
 
 def resolve_all_collisions(agents):
     for i in range(len(agents)):
         for j in range(i + 1, len(agents)):
             agents[i].resolve_collision(agents[j])
+
+def is_mouse_over_agent(agent, mouse_pos):
+    dx = agent.x - mouse_pos[0]
+    dy = agent.y - mouse_pos[1]
+    return dx * dx + dy * dy <= 6 * 6
+

@@ -1,5 +1,4 @@
 import pygame
-import config as cfg
 from SEG.config import settings
 from SEG.state import state
 from SEG.ui.game_info import render_game_info
@@ -11,7 +10,7 @@ from SEG.utils.tree import build_tree
 pygame.init()
 
 screen = pygame.display.set_mode(settings.window_size)
-pygame.display.set_caption("SEG v1.2")
+pygame.display.set_caption("SEG v1.4")
 
 clock = pygame.time.Clock()
 font = pygame.font.SysFont(None, 24)
@@ -29,12 +28,19 @@ while state.running:
             if event.key == pygame.K_SPACE:
                 state.is_pause = not state.is_pause
 
+    screen.fill(settings.background_color)
+    render_food(screen)
+    render_agents(screen, font)
+    render_game_info(screen, font)
+    pygame.display.flip()
+
     if state.is_pause:
         continue
 
     speed_count = 0
     for agent in state.agents[:]:
         agent.move()
+        resolve_all_collisions(state.agents)
         agent.eat()
         agent.reproduce()
         speed_count += agent.speed
@@ -54,13 +60,6 @@ while state.running:
         random_spawn_food(count=settings.food_per_second)
         state.food_timer = 0
 
-    resolve_all_collisions(state.agents)
-
-    screen.fill(settings.background_color)
-    render_food(screen)
-    render_agents(screen)
-    render_game_info(screen, font)
-    pygame.display.flip()
 
     state.current_tick += 1
     delta_t = 60 / 1000
