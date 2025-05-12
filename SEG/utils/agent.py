@@ -4,16 +4,17 @@ import pygame
 
 import SEG.config as cfg
 from SEG.Class.Agent import Agent
+from SEG.config import settings
 from SEG.state import state
 from SEG.utils.color import speed_to_color
 
-width, height = cfg.window_size
+width, height = settings.window_size
 
 
 def init_agent(count=1):
     for i in range(count):
         init_speed = random.uniform(1, 3)
-        init_color = speed_to_color(init_speed, max_speed=cfg.max_speed)
+        init_color = speed_to_color(init_speed, max_speed=settings.max_speed)
         agent = Agent(x=random.randint(0, width), y=random.randint(0, height), speed=init_speed, color=init_color)
         state.agents.append(agent)
         state.all_agents[agent.id] = agent

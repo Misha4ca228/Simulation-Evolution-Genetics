@@ -1,5 +1,6 @@
 import pygame
 import config as cfg
+from SEG.config import settings
 from SEG.state import state
 from SEG.ui.game_info import render_game_info
 from SEG.utils.agent import render_agents, init_agent, resolve_all_collisions
@@ -9,13 +10,13 @@ from SEG.utils.tree import build_tree
 
 pygame.init()
 
-screen = pygame.display.set_mode(cfg.window_size)
+screen = pygame.display.set_mode(settings.window_size)
 pygame.display.set_caption("SEG v1.2")
 
 clock = pygame.time.Clock()
 font = pygame.font.SysFont(None, 24)
 
-init_agent(count=cfg.initial_agents)
+init_agent(count=settings.initial_agents)
 
 while state.running:
 
@@ -42,7 +43,7 @@ while state.running:
             agent.death_tick = state.current_tick
             state.agents.remove(agent)
 
-        if agent.age >= cfg.max_age:
+        if agent.age >= settings.max_age:
             agent.death_tick = state.current_tick
             state.agents.remove(agent)
             add_food(x=agent.x, y=agent.y, energy=agent.energy, type="death")
@@ -50,12 +51,12 @@ while state.running:
     state.avg_speed = round(max(1, speed_count) / max(1, len(state.agents)), 2)
 
     if state.food_timer >= 1.0:
-        random_spawn_food(count=cfg.food_per_second)
+        random_spawn_food(count=settings.food_per_second)
         state.food_timer = 0
 
     resolve_all_collisions(state.agents)
 
-    screen.fill(cfg.background_color)
+    screen.fill(settings.background_color)
     render_food(screen)
     render_agents(screen)
     render_game_info(screen, font)

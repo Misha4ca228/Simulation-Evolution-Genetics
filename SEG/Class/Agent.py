@@ -1,6 +1,7 @@
 import math
 import random
 
+from SEG.config import settings
 from SEG.state import state
 import SEG.config as cfg
 from SEG.utils.color import speed_to_color
@@ -28,7 +29,7 @@ class Agent:
             dist = max((dx ** 2 + dy ** 2) ** 0.5, 0.1)
             self.x += self.speed * dx / dist
             self.y += self.speed * dy / dist
-        self.energy -= (cfg.step_energy + (self.speed/2) * cfg.speed_energy)
+        self.energy -= (settings.step_energy + (self.speed/2) * settings.speed_energy)
         self.age += 1
 
     def eat(self):
@@ -39,11 +40,11 @@ class Agent:
                 break
 
     def reproduce(self):
-        if self.energy >= cfg.div_energy * 1.5 and len(state.agents) < cfg.settings.max_agents:
-            self.energy -= cfg.div_energy
+        if self.energy >= settings.div_energy * 1.5 and len(state.agents) < settings.max_agents:
+            self.energy -= settings.div_energy
 
-            new_speed = max(0.5, min(cfg.max_speed, self.speed + random.choice([-cfg.mut_ratio, cfg.mut_ratio])))
-            new_color = speed_to_color(new_speed, cfg.max_speed)
+            new_speed = max(0.5, min(settings.max_speed, self.speed + random.choice([-settings.mut_ratio, settings.mut_ratio])))
+            new_color = speed_to_color(new_speed, settings.max_speed)
             child = Agent(self.x, self.y, new_speed, new_color, parent_id=self.id,
                              birth_tick=state.current_tick)
             state.all_agents[child.id] = child
