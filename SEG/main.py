@@ -1,22 +1,27 @@
+import threading
+
 import pygame
 from SEG.config import settings
 from SEG.state import state
 from SEG.ui.game_info import render_game_info
+from SEG.ui.main_tk import main_tk
 from SEG.utils.agent import render_agents, init_agent, resolve_all_collisions
 from SEG.utils.food import random_spawn_food, render_food, add_food
 from SEG.utils.music import init_music
-from SEG.utils.tree import build_tree
 
 
 pygame.init()
 
 screen = pygame.display.set_mode(settings.window_size)
-pygame.display.set_caption("SEG v1.6")
+pygame.display.set_caption("SEG V2.0 RELEASE!")
 
 clock = pygame.time.Clock()
 font = pygame.font.SysFont(None, 24)
 
+threading.Thread(target=main_tk, daemon=True).start()
+
 init_music()
+
 init_agent(count=settings.initial_agents)
 
 while state.running:
@@ -25,8 +30,6 @@ while state.running:
         if event.type == pygame.QUIT:
             state.running = False
         if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_g:
-                build_tree()
             if event.key == pygame.K_SPACE:
                 state.is_pause = not state.is_pause
 
@@ -61,7 +64,6 @@ while state.running:
     if state.food_timer >= 1.0:
         random_spawn_food(count=settings.food_per_second)
         state.food_timer = 0
-
 
     state.current_tick += 1
     delta_t = 60 / 1000

@@ -5,12 +5,12 @@ import pygame
 from SEG.config import settings
 
 
-def init_music(volume=0.5):
+def init_music(volume=0.3):
     path = random.choice(settings.musics)
     pygame.mixer.init()
     pygame.mixer.music.load(path)
     pygame.mixer.music.set_volume(volume)
-    pygame.mixer.music.play(-1)  # -1 — бесконечный цикл
+    pygame.mixer.music.play(-1)
 
 def stop_music():
     pygame.mixer.music.stop()

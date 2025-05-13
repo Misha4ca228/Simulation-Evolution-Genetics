@@ -1,11 +1,16 @@
+from tkinter import filedialog
 from graphviz import Digraph
-import SEG.config as cfg
 from SEG.config import settings
 
 from SEG.state import state
 
 
 def build_tree():
+    file_path = filedialog.asksaveasfilename(
+        filetypes=[("Portable Document Format", "*.pdf")], title="Сохранить древо"
+    )
+    if not file_path:
+        return
     dot = Digraph(comment="Evolution Tree")
     for agent in state.all_agents.values():
         birth_year = agent.birth_tick // settings.ticks_per_year
@@ -22,4 +27,4 @@ def build_tree():
         if agent.parent_id:
             dot.edge(str(agent.parent_id), str(agent.id))
 
-    dot.render('evolution_tree.gv', view=True)
+    dot.render(file_path, view=True)
