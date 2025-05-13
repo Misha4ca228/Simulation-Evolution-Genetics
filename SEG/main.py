@@ -15,16 +15,21 @@ pygame.init()
 screen = pygame.display.set_mode(settings.window_size)
 pygame.display.set_caption("SEG V2.0 RELEASE!")
 
+background = pygame.Surface(settings.window_size).convert()
+background.fill(settings.background_color)
+
 clock = pygame.time.Clock()
 font = pygame.font.SysFont(None, 24)
 
 threading.Thread(target=main_tk, daemon=True).start()
 
 init_music()
-
 init_agent(count=settings.initial_agents)
 
 while state.running:
+    screen.blit(background, (0, 0))
+    fps = int(clock.get_fps())
+    pygame.display.set_caption(f"SEG V2.0 RELEASE! | FPS: {fps}")
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -33,7 +38,6 @@ while state.running:
             if event.key == pygame.K_SPACE:
                 state.is_pause = not state.is_pause
 
-    screen.fill(settings.background_color)
     render_food(screen, font)
     render_agents(screen, font)
     render_game_info(screen, font)
@@ -45,7 +49,6 @@ while state.running:
     speed_count = 0
     for agent in state.agents[:]:
         agent.move()
-        resolve_all_collisions(state.agents)
         agent.eat()
         agent.reproduce()
         speed_count += agent.speed
@@ -59,7 +62,8 @@ while state.running:
             state.agents.remove(agent)
             add_food(x=agent.x, y=agent.y, energy=agent.energy, type="death")
 
-    state.avg_speed = round(max(1, speed_count) / max(1, len(state.agents)), 2)
+    state.avg_speed = round(speed_count / max(1, len(state.agents)), 1)
+    resolve_all_collisions(state.agents)
 
     if state.food_timer >= 1.0:
         random_spawn_food(count=settings.food_per_second)

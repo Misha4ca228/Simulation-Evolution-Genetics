@@ -5,5 +5,5 @@ from SEG.utils.tree import build_tree
 
 
 def tree_window(window):
-    save_button = tk.Button(window, text="Сохранить настройки симуляции", command=build_tree)
+    save_button = tk.Button(window, text="Сохранить древо", command=build_tree)
     save_button.pack(pady=50)

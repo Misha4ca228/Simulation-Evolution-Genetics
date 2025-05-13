@@ -43,7 +43,7 @@ class Agent:
         if self.energy >= settings.div_energy * 1.5 and len(state.agents) < settings.max_agents:
             self.energy -= settings.div_energy
 
-            new_speed = max(0.5, min(settings.max_speed, self.speed + random.choice([-settings.mut_ratio, settings.mut_ratio])))
+            new_speed = max(0.5, min(settings.max_speed, self.speed + random.uniform(-settings.mut_ratio, settings.mut_ratio)))
             new_color = speed_to_color(new_speed, settings.max_speed)
             child = Agent(self.x, self.y, new_speed, new_color, parent_id=self.id,
                              birth_tick=state.current_tick)
@@ -54,7 +54,7 @@ class Agent:
         dx = other.x - self.x
         dy = other.y - self.y
         dist = math.hypot(dx, dy)
-        min_dist = 10
+        min_dist = 5
 
         if dist < min_dist and dist != 0:
             overlap = min_dist - dist
