@@ -53,14 +53,11 @@ while state.running:
         agent.reproduce()
         speed_count += agent.speed
 
-        if agent.energy <= 0:
+        if agent.energy <= 0 or agent.age >= settings.max_age:
             agent.death_tick = state.current_tick
+            if agent.age >= settings.max_age:
+                add_food(x=agent.x, y=agent.y, energy=agent.energy, type="death")
             state.agents.remove(agent)
-
-        if agent.age >= settings.max_age:
-            agent.death_tick = state.current_tick
-            state.agents.remove(agent)
-            add_food(x=agent.x, y=agent.y, energy=agent.energy, type="death")
 
     state.avg_speed = round(speed_count / max(1, len(state.agents)), 1)
     resolve_all_collisions(state.agents)
