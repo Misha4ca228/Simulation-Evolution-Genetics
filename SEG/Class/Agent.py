@@ -54,7 +54,7 @@ class Agent:
         dx = other.x - self.x
         dy = other.y - self.y
         dist = math.hypot(dx, dy)
-        min_dist = 5
+        min_dist = 4
 
         if dist < min_dist and dist != 0:
             overlap = min_dist - dist

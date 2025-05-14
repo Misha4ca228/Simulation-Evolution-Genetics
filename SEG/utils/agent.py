@@ -12,7 +12,7 @@ width, height = settings.window_size
 
 def init_agent(count=1):
     for i in range(count):
-        init_speed = random.uniform(1, 3)
+        init_speed = random.uniform(1, 1.5)
         init_color = speed_to_color(init_speed, max_speed=settings.max_speed)
         agent = Agent(x=random.randint(0, width), y=random.randint(0, height), speed=init_speed, color=init_color)
         state.agents.append(agent)
@@ -35,5 +35,5 @@ def resolve_all_collisions(agents):
 def is_mouse_over_agent(agent, mouse_pos):
     dx = agent.x - mouse_pos[0]
     dy = agent.y - mouse_pos[1]
-    return dx * dx + dy * dy <= 6 * 6
+    return dx * dx + dy * dy <= 4 * 4
 

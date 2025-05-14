@@ -4,8 +4,8 @@ import SEG.config as cfg
 
 def render_game_info(screen, font):
     lines = [
-        f"Еда: {len(state.foods)}",
-        f"Агенты: {len(state.agents)}",
+        f"Еда: {len(state.foods)}/{settings.max_food}",
+        f"Агенты: {len(state.agents)}/{settings.max_agents}",
         f"Год: {state.current_tick // settings.ticks_per_year}",
         f"Ср.Скорость: {state.avg_speed}"
     ]
