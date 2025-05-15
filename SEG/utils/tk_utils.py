@@ -19,13 +19,18 @@ def create_entry(label_text, attr_name, window):
 
 def save_settings():
     for attr, entry in tk_state.entries.items():
-        value = entry.get()
+        value_str = entry.get()
         current_value = getattr(settings, attr)
 
-        if isinstance(current_value, int):
-            value = int(value)
-        elif isinstance(current_value, float):
-            value = float(value)
+        try:
+            # Попробуем привести к float
+            value = float(value_str)
+            # Если в settings атрибут был int — и float без дробной части, кастуем в int
+            if isinstance(current_value, int) and value.is_integer():
+                value = int(value)
+        except ValueError:
+            print(f"Ошибка преобразования поля '{attr}': {value_str}")
+            continue  # Пропускаем, если не удалось преобразовать
 
         setattr(settings, attr, value)
 

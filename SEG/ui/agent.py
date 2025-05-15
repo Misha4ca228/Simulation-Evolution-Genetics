@@ -7,6 +7,7 @@ def draw_agent_info(screen, agent, pos, font):
         f"Speed: {agent.speed:.2f}",
         f"Energy: {agent.energy:.1f}",
         f"Age: {agent.age // settings.ticks_per_year}",
+        f"Ch: {agent.chloroplast:.2f}"
     ]
     for i, line in enumerate(lines):
         text_surface = font.render(line, True, (255, 255, 255))

@@ -7,8 +7,11 @@ def render_game_info(screen, font):
         f"Еда: {len(state.foods)}/{settings.max_food}",
         f"Агенты: {len(state.agents)}/{settings.max_agents}",
         f"Год: {state.current_tick // settings.ticks_per_year}",
-        f"Ср.Скорость: {state.avg_speed}"
+        f"Ср.Скорость: {state.avg_speed}",
+        f"Ср.Хлоропласты: {state.avg_chloroplast}",
+        f"Освещенность: {settings.illumination*100}%"
     ]
+
     y = 10
     for line in lines:
         text_surface = font.render(line, True, (255, 255, 255))

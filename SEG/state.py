@@ -9,5 +9,6 @@ class SimulationState:
         self.food_timer = 0
         self.current_tick = 0
         self.avg_speed = 1
+        self.avg_chloroplast = 1
 
 state = SimulationState()

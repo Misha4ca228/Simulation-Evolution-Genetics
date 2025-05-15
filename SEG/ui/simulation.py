@@ -3,6 +3,7 @@ import tkinter as tk
 
 def simulation_window(window):
     create_entry("Частота спавна еды Еда/сек ", "food_per_second", window)
+    create_entry("Освещенность", "illumination", window)
     create_entry("Максимальный возраст агента", "max_age", window)
     create_entry("Максимальная скорость", "max_speed", window)
     create_entry("Минимальная энергия еды ", "min_food_energy", window)

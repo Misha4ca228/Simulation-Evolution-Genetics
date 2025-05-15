@@ -21,7 +21,7 @@ def build_tree():
             death_year = agent.death_tick // settings.ticks_per_year
             life_str = f"{birth_year}-{death_year}"
 
-        label = f"ID:{agent.id}\\nSp:{agent.speed:.2f}\\n{life_str}"
+        label = f"ID:{agent.id}\\nSp:{agent.speed:.2f}\\nCh{agent.chloroplast:.2f}\\n{life_str}"
         dot.node(str(agent.id), label, style="filled", fillcolor="#%02x%02x%02x" % agent.color)
 
         if agent.parent_id:

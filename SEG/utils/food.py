@@ -23,7 +23,7 @@ def random_spawn_food(count=10):
             if not len(state.foods) <= settings.max_food:
                 break
             add_food(x=random.randint(0, width), y=random.randint(0, height),
-                     energy=random.randint(settings.min_food_energy, settings.max_food_energy),
+                     energy=random.uniform(settings.min_food_energy, settings.max_food_energy),
                      type=random.choice(["plaint", "meat"]))
 
 

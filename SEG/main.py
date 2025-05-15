@@ -47,11 +47,11 @@ while state.running:
         continue
 
     speed_count = 0
+    chloroplast_count = 0
     for agent in state.agents[:]:
         agent.move()
         agent.eat()
         agent.reproduce()
-        speed_count += agent.speed
 
         if agent.energy <= 0 or agent.age >= settings.max_age:
             agent.death_tick = state.current_tick
@@ -59,8 +59,14 @@ while state.running:
                 add_food(x=agent.x, y=agent.y, energy=agent.energy, type="death")
             state.agents.remove(agent)
 
+        speed_count += agent.speed
+        chloroplast_count += agent.chloroplast
+
+
     state.avg_speed = round(speed_count / max(1, len(state.agents)), 1)
-    resolve_all_collisions(state.agents)
+    state.avg_chloroplast = round(chloroplast_count / max(1, len(state.agents)), 1)
+    for _ in range(3):
+        resolve_all_collisions(state.agents)
 
     if state.food_timer >= 1.0:
         random_spawn_food(count=settings.food_per_second)
