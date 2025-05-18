@@ -21,10 +21,19 @@ def init_agent(count=1):
 
 def render_agents(screen, font):
     mouse_pos = pygame.mouse.get_pos()
+    hovered_agents = [
+        (agent, (agent.x - mouse_pos[0]) ** 2 + (agent.y - mouse_pos[1]) ** 2)
+        for agent in state.agents
+        if is_mouse_over_agent(agent, mouse_pos)
+    ]
+
+    closest_agent = min(hovered_agents, key=lambda t: t[1])[0] if hovered_agents else None
+
     for agent in state.agents:
         pygame.draw.circle(screen, agent.color, (agent.x, agent.y), 6)
-        if is_mouse_over_agent(agent, mouse_pos):
-            draw_agent_info(screen, agent, mouse_pos, font)
+
+    if closest_agent:
+        draw_agent_info(screen, closest_agent, mouse_pos, font)
 
 
 def resolve_all_collisions(agents):
