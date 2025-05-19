@@ -13,7 +13,7 @@ from SEG.utils.music import init_music
 pygame.init()
 
 screen = pygame.display.set_mode(settings.window_size)
-pygame.display.set_caption("SEG V2.0 RELEASE!")
+pygame.display.set_caption("SEG V2.1 RELEASE!")
 
 background = pygame.Surface(settings.window_size).convert()
 background.fill(settings.background_color)
@@ -29,7 +29,7 @@ init_agent(count=settings.initial_agents)
 while state.running:
     screen.blit(background, (0, 0))
     fps = int(clock.get_fps())
-    pygame.display.set_caption(f"SEG V2.0 RELEASE! | FPS: {fps}")
+    pygame.display.set_caption(f"SEG V2.1 RELEASE! | FPS: {fps}")
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:

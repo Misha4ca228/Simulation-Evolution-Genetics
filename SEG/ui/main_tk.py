@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import ttk
 from SEG.config import settings  # Импорт текущих настроек
+from SEG.ui.setting import settings_window
 from SEG.ui.simulation import simulation_window
 from SEG.ui.tk_state import tk_state
 from SEG.ui.tree import tree_window
@@ -9,7 +10,7 @@ from SEG.utils.tk_utils import create_entry
 
 def main_tk():
     window = tk.Tk()
-    window.title("SEG V2.0 RELEASE!")
+    window.title("SEG V2.1 RELEASE!")
     window.geometry("400x600")
     notebook = ttk.Notebook(window)
     notebook.pack(fill='both', expand=True)
@@ -28,6 +29,7 @@ def main_tk():
 
     simulation_window(sim)
     tree_window(tree)
+    #settings_window(setting)
 
     window.mainloop()
 
