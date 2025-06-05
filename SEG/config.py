@@ -3,9 +3,9 @@ class Settings:
         self.initial_agents = 1  # Начальная популяция
         self.food_per_second = 15  # Появление еды еда\сек
         self.ticks_per_year = 100  # 1 игровой год
-        self.window_size = (800, 800)  # Размекры окна
+        self.window_size = (800, 800)  # Размеры окна
         # Гены
-        self.mut_ratio = 0.15  # Сила смутации
+        self.mut_ratio = 0.15  # Сила мутации
         # Энергия
         self.div_energy = 80  # Энергия необходимая для деления
         self.step_energy = 0.1 # Энергия расходуемая за 1 шаг
